@@ -1,0 +1,1 @@
+Пример работы с сервисом Yandex Cloud Video.
