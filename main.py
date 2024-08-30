@@ -84,8 +84,6 @@ def main():
 
     video = operation_result.response
 
-    print(f"Created video: {video}")
-
     token = get_auth_token(
         service_account_key=service_account_key,
     )
@@ -93,8 +91,9 @@ def main():
     my_client = client.TusClient(video.tusd.url,
                                  headers={'Authorization': f"Bearer {token}"})
 
-    # Here we MUST use the URL from the video object. If you skip this parameter, the client will try to create a new
-    # upload and will fail with a 405 error, because the POST method is not allowed on the video URL.
+    # Here we MUST use the URL from the video object. If you skip this parameter,
+    # the client will try to create a new upload and will fail with a 405 error,
+    # because the POST method is not allowed on the video URL.
     uploader = my_client.uploader('cat.mp4', url=video.tusd.url)
     uploader.upload()
 
